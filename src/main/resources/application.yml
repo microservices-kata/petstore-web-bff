@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: web-bff
+  profiles:
+    active: local
+
+server:
+  port: 8090
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
+    healthcheck:
+      enabled: true
+
+logging:
+  level:
+    org:
+      springframework: DEBUG
+
+app:
+  lang: "Java!"
