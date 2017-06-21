@@ -32,15 +32,18 @@ public class AccountPactTest {
                 .headers(ImmutableMap.of("Content-Type", "application/json"))
                 .status(200)
                 .body(new PactDslJsonBody()
-                    .stringType("lang", "Scala!"))
-                .toPact();
+                    .stringType("language", "Scala!")
+                    .stringType("environment", "Test")
+                ).toPact();
     }
 
     @Test
     @PactVerification
     public void storeContractTest() {
         RestAssured.port = providerPort;
-        get("/app/info").then().body("lang", equalTo("Scala!"));
+        get("/app/info").then()
+            .body("language", equalTo("Scala!"))
+            .body("environment", equalTo("Test"));
 
     }
 }
