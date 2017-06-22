@@ -1,26 +1,26 @@
 package com.thoughtworks.petstore.web.dto.response;
 
-import org.springframework.http.HttpStatus;
+import com.thoughtworks.petstore.web.dto.enums.ResStatus;
 
 public class GeneralRes {
-    private HttpStatus status;
+    private ResStatus status;
     private String message;
 
-    public GeneralRes(HttpStatus status, String message) {
+    public GeneralRes(ResStatus status, String message) {
         this.status = status;
         this.message = message;
     }
 
     public GeneralRes() {
-        this.status = HttpStatus.OK;
+        this.status = ResStatus.OK;
         this.message = "";
     }
 
-    public HttpStatus getStatus() {
+    public ResStatus getStatus() {
         return status;
     }
 
-    public void setStatus(HttpStatus status) {
+    public void setStatus(ResStatus status) {
         this.status = status;
     }
 

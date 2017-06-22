@@ -1,7 +1,7 @@
 package com.thoughtworks.petstore.web.dto.response;
 
 import com.thoughtworks.petstore.web.dto.enums.Gender;
-import org.springframework.http.HttpStatus;
+import com.thoughtworks.petstore.web.dto.enums.ResStatus;
 
 public class UserRes extends GeneralRes {
     private String id;
@@ -10,7 +10,7 @@ public class UserRes extends GeneralRes {
     private String email;
     private String phone;
 
-    public UserRes(HttpStatus status, String message) {
+    public UserRes(ResStatus status, String message) {
         super(status, message);
     }
 

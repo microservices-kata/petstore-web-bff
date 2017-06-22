@@ -1,6 +1,7 @@
 package com.thoughtworks.petstore.web.controller;
 
 import com.thoughtworks.petstore.web.dto.enums.Gender;
+import com.thoughtworks.petstore.web.dto.enums.ResStatus;
 import com.thoughtworks.petstore.web.dto.request.LoginReq;
 import com.thoughtworks.petstore.web.dto.request.UserReq;
 import com.thoughtworks.petstore.web.dto.response.UserRes;
@@ -16,12 +17,23 @@ public class UserController {
     @ApiOperation(value = "Register user")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<UserRes> register(@RequestBody UserReq userReq) {
-        return ResponseEntity.status(HttpStatus.OK).body(
-                new UserRes("0001",
-                        userReq.getName(),
-                        userReq.getGender(),
-                        userReq.getEmail(),
-                        userReq.getPhone()));
+        if (userReq.getEmail().equals("abc@tw.com")) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    new UserRes(ResStatus.BAD_REQUEST, "Email already occupied"));
+        } else if (userReq.getPhone().equals("123456789")) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    new UserRes(ResStatus.BAD_REQUEST, "Phone number already occupied"));
+        } else if (userReq.getPhone().equals("123456789")) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    new UserRes(ResStatus.BAD_REQUEST, "User already exist"));
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(
+                    new UserRes("0001",
+                            userReq.getName(),
+                            userReq.getGender(),
+                            userReq.getEmail(),
+                            userReq.getPhone()));
+        }
     }
 
     @ApiOperation(value = "User login")
@@ -32,7 +44,7 @@ public class UserController {
                     new UserRes("0001", "Fan", Gender.Male, "abc@tw.com", "123456789"));
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                    new UserRes(HttpStatus.BAD_REQUEST, "Incorrect username or password"));
+                    new UserRes(ResStatus.BAD_REQUEST, "Incorrect username or password"));
         }
     }
 
@@ -44,7 +56,7 @@ public class UserController {
                     new UserRes("0001", "Fan", Gender.Male, "abc@tw.com", "123456789"));
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
-                    new UserRes(HttpStatus.UNAUTHORIZED, "No permission to user " + userId));
+                    new UserRes(ResStatus.UNAUTHORIZED, "No permission to user " + userId));
         }
     }
 
@@ -61,7 +73,7 @@ public class UserController {
                             userReq.getPhone()));
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
-                    new UserRes(HttpStatus.UNAUTHORIZED, "No permission to user " + userId));
+                    new UserRes(ResStatus.UNAUTHORIZED, "No permission to user " + userId));
         }
     }
 
