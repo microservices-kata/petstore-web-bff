@@ -15,8 +15,9 @@ node {
             sh 'mvn clean package'
         }
         stage('更新契约') {
-            withEnv(["PACT_BROKER_URL=http://${devHost}:2000") {
-            sh "mvn pact:publish"
+            withEnv(["PACT_BROKER_URL=http://${devHost}:2000"]) {
+                sh "mvn pact:publish"
+            }
         }
     }
     stage('创建镜像') {
