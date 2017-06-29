@@ -1,8 +1,8 @@
 package com.thoughtworks.petstore.web.controller;
 
-import com.thoughtworks.petstore.web.dto.request.RefundReq;
-import com.thoughtworks.petstore.web.dto.response.OrderDigestRes;
-import com.thoughtworks.petstore.web.dto.response.OrderRes;
+import com.thoughtworks.petstore.web.dto.vo.request.RefundReq;
+import com.thoughtworks.petstore.web.dto.vo.response.OrderDigestRes;
+import com.thoughtworks.petstore.web.dto.vo.response.OrderRes;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

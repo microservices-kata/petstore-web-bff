@@ -1,8 +1,8 @@
 package com.thoughtworks.petstore.web.controller;
 
 import com.google.common.collect.ImmutableList;
-import com.thoughtworks.petstore.web.dto.request.BuyReq;
-import com.thoughtworks.petstore.web.dto.response.*;
+import com.thoughtworks.petstore.web.dto.vo.request.BuyReq;
+import com.thoughtworks.petstore.web.dto.vo.response.*;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,12 +1,12 @@
-package com.thoughtworks.petstore.web.dto.response;
+package com.thoughtworks.petstore.web.dto.vo.response;
 
-public class CategorieRes extends GeneralRes {
+public class SpeciesRes extends GeneralRes {
     private String id;
     private String name;
     private String description;
     private String imageUrl;
 
-    public CategorieRes(String id, String name, String description, String imageUrl) {
+    public SpeciesRes(String id, String name, String description, String imageUrl) {
         this.id = id;
         this.name = name;
         this.description = description;

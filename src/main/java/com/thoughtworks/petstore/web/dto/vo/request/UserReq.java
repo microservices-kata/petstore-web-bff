@@ -1,4 +1,4 @@
-package com.thoughtworks.petstore.web.dto.request;
+package com.thoughtworks.petstore.web.dto.vo.request;
 
 import com.thoughtworks.petstore.web.dto.enums.Gender;
 

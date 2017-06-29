@@ -1,4 +1,4 @@
-package com.thoughtworks.petstore.web.dto.request;
+package com.thoughtworks.petstore.web.dto.vo.request;
 
 public class BuyReq {
     private String petId;

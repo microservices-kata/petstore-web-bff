@@ -1,4 +1,4 @@
-package com.thoughtworks.petstore.web.dto.response;
+package com.thoughtworks.petstore.web.dto.vo.response;
 
 import com.thoughtworks.petstore.web.dto.enums.ResStatus;
 
