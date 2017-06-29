@@ -1,19 +1,21 @@
-package com.thoughtworks.petstore.web.service.account.entity;
+package com.thoughtworks.petstore.web.service.account.dto;
 
+import com.thoughtworks.petstore.web.dto.enums.Gender;
 
-public class User {
-    private Long userId;
+public class UserPo {
     private String name;
     private String password;
+    private String gender;
     private String email;
     private String phone;
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public UserPo(String name, String password,
+                  Gender gender, String email, String phone) {
+        this.name = name;
+        this.password = password;
+        this.gender = gender.toString();
+        this.email = email;
+        this.phone = phone;
     }
 
     public String getName() {
@@ -30,6 +32,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getEmail() {

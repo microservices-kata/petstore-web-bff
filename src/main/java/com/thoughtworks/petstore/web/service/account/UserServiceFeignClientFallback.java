@@ -1,23 +1,24 @@
 package com.thoughtworks.petstore.web.service.account;
 
-import com.thoughtworks.petstore.web.service.account.entity.User;
+import com.thoughtworks.petstore.web.service.account.dto.UserPo;
+import com.thoughtworks.petstore.web.service.account.dto.UserWithIdPo;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserServiceFeignClientFallback implements UserServiceFeignClient {
 
 	@Override
-	public User getUser(Long userId) {
+	public UserWithIdPo getUser(Long userId) {
 		return null;
 	}
 
 	@Override
-	public User updateUser(User user) {
+	public UserWithIdPo updateUser(UserPo userPo) {
 		return null;
 	}
 
 	@Override
-	public User createUser(User user) {
+	public UserWithIdPo createUser(UserPo userPo) {
 		return null;
 	}
 }

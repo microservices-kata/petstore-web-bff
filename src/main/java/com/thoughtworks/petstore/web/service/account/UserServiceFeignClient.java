@@ -1,6 +1,7 @@
 package com.thoughtworks.petstore.web.service.account;
 
-import com.thoughtworks.petstore.web.service.account.entity.User;
+import com.thoughtworks.petstore.web.service.account.dto.UserWithIdPo;
+import com.thoughtworks.petstore.web.service.account.dto.UserPo;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public interface UserServiceFeignClient {
     @RequestMapping(value = "/api/users/{userId}", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    User getUser(@PathVariable("userId") Long userId);
+    UserWithIdPo getUser(@PathVariable("userId") Long userId);
 
     @RequestMapping(value = "/api/users", method = RequestMethod.PUT,
             produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    User updateUser(@RequestBody User user);
+    UserWithIdPo updateUser(@RequestBody UserPo userPo);
 
     @RequestMapping(value = "/api/users", method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    User createUser(@RequestBody User user);
+    UserWithIdPo createUser(@RequestBody UserPo userPo);
 }

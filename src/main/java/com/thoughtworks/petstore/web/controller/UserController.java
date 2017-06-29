@@ -5,7 +5,9 @@ import com.thoughtworks.petstore.web.dto.enums.ResStatus;
 import com.thoughtworks.petstore.web.dto.request.LoginReq;
 import com.thoughtworks.petstore.web.dto.request.UserReq;
 import com.thoughtworks.petstore.web.dto.response.UserRes;
+import com.thoughtworks.petstore.web.service.account.UserServiceFeignClient;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/users")
 public class UserController {
+
+    @Autowired
+    private UserServiceFeignClient userServiceFeignClient;
 
     @ApiOperation(value = "Register user")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
