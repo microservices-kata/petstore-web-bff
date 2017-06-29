@@ -1,11 +1,15 @@
 package com.thoughtworks.petstore.web.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import com.thoughtworks.petstore.web.dto.assembler.UserAssembler;
 import com.thoughtworks.petstore.web.dto.enums.Gender;
 import com.thoughtworks.petstore.web.dto.enums.ResStatus;
-import com.thoughtworks.petstore.web.dto.request.LoginReq;
-import com.thoughtworks.petstore.web.dto.request.UserReq;
-import com.thoughtworks.petstore.web.dto.response.UserRes;
+import com.thoughtworks.petstore.web.dto.vo.request.LoginReq;
+import com.thoughtworks.petstore.web.dto.vo.request.UserReq;
+import com.thoughtworks.petstore.web.dto.vo.response.UserRes;
 import com.thoughtworks.petstore.web.service.account.UserServiceFeignClient;
+import com.thoughtworks.petstore.web.service.account.dto.UserWithIdPo;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,26 +22,22 @@ public class UserController {
 
     @Autowired
     private UserServiceFeignClient userServiceFeignClient;
+    @Autowired
+    private UserAssembler userAssembler;
 
     @ApiOperation(value = "Register user")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @HystrixCommand(commandProperties = {
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000"),
+            @HystrixProperty(name = "execution.timeout.enabled", value = "true") })
     public ResponseEntity<UserRes> register(@RequestBody UserReq userReq) {
-        if (userReq.getEmail().equals("abc@tw.com")) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                    new UserRes(ResStatus.BAD_REQUEST, "Email already occupied"));
-        } else if (userReq.getPhone().equals("123456789")) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                    new UserRes(ResStatus.BAD_REQUEST, "Phone number already occupied"));
-        } else if (userReq.getPhone().equals("123456789")) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                    new UserRes(ResStatus.BAD_REQUEST, "User already exist"));
+        UserWithIdPo userWithIdPo = userServiceFeignClient.createUser(userAssembler.userReq2UserPo(userReq));
+        if (userWithIdPo == null) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
+                    new UserRes(ResStatus.SERVER_ERROR, "Service no response"));
         } else {
             return ResponseEntity.status(HttpStatus.OK).body(
-                    new UserRes("0001",
-                            userReq.getName(),
-                            userReq.getGender(),
-                            userReq.getEmail(),
-                            userReq.getPhone()));
+                    userAssembler.userWithIdPo2UserRes(userWithIdPo));
         }
     }
 
@@ -68,7 +68,7 @@ public class UserController {
     @ApiOperation(value = "Update user info")
     @RequestMapping(value = "/info", method = RequestMethod.PUT)
     public ResponseEntity<UserRes> updateInfo(@RequestHeader(value = "User-Id") String userId,
-                              @RequestBody UserReq userReq) {
+                                              @RequestBody UserReq userReq) {
         if (userId.equals("0001")) {
             return ResponseEntity.status(HttpStatus.OK).body(
                     new UserRes("0001",
