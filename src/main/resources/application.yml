@@ -19,5 +19,9 @@ logging:
     org:
       springframework: DEBUG
 
+feign:
+  hystrix:
+    enabled: true
+
 app:
   lang: "Java!"

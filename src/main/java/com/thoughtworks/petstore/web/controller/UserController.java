@@ -1,7 +1,5 @@
 package com.thoughtworks.petstore.web.controller;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.thoughtworks.petstore.web.dto.assembler.UserAssembler;
 import com.thoughtworks.petstore.web.dto.enums.Gender;
 import com.thoughtworks.petstore.web.dto.enums.ResStatus;
@@ -27,9 +25,6 @@ public class UserController {
 
     @ApiOperation(value = "Register user")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    @HystrixCommand(commandProperties = {
-            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000"),
-            @HystrixProperty(name = "execution.timeout.enabled", value = "true") })
     public ResponseEntity<UserRes> register(@RequestBody UserReq userReq) {
         UserWithIdPo userWithIdPo = userServiceFeignClient.createUser(userAssembler.userReq2UserPo(userReq));
         if (userWithIdPo == null) {

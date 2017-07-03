@@ -9,6 +9,9 @@ public class UserPo {
     private String email;
     private String phone;
 
+    public UserPo() {
+    }
+
     public UserPo(String name, String password,
                   Gender gender, String email, String phone) {
         this.name = name;

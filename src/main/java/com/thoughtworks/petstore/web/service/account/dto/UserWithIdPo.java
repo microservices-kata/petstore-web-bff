@@ -7,6 +7,9 @@ public class UserWithIdPo extends UserPo {
 
     private Long userId;
 
+    public UserWithIdPo() {
+    }
+
     public UserWithIdPo(String name, String password, Gender gender,
                         String email, String phone, Long userId) {
         super(name, password, gender, email, phone);
