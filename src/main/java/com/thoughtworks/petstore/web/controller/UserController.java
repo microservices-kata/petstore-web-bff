@@ -6,6 +6,7 @@ import com.thoughtworks.petstore.web.dto.enums.ResStatus;
 import com.thoughtworks.petstore.web.dto.vo.request.LoginReq;
 import com.thoughtworks.petstore.web.dto.vo.request.UserReq;
 import com.thoughtworks.petstore.web.dto.vo.response.UserRes;
+import com.thoughtworks.petstore.web.exception.FeignClientException;
 import com.thoughtworks.petstore.web.service.account.UserServiceFeignClient;
 import com.thoughtworks.petstore.web.service.account.dto.UserWithIdPo;
 import io.swagger.annotations.ApiOperation;
@@ -26,25 +27,32 @@ public class UserController {
     @ApiOperation(value = "Register user")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<UserRes> register(@RequestBody UserReq userReq) {
-        UserWithIdPo userWithIdPo = userServiceFeignClient.createUser(userAssembler.userReq2UserPo(userReq));
+        try {
+            UserWithIdPo userWithIdPo = userServiceFeignClient.createUser(userAssembler.userReq2UserPo(userReq));
+            if (userWithIdPo == null) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
+                        new UserRes(ResStatus.SERVER_ERROR, "Service no response"));
+            } else {
+                return ResponseEntity.status(HttpStatus.OK).body(
+                        userAssembler.userWithIdPo2UserRes(userWithIdPo));
+            }
+        } catch (FeignClientException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    new UserRes(ResStatus.BAD_REQUEST, e.getMessage()));
+        }
+    }
+
+    @ApiOperation(value = "User login")
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public ResponseEntity<UserRes> login(@RequestBody LoginReq loginReq) {
+        UserWithIdPo userWithIdPo =
+                userServiceFeignClient.matchUserCredential(loginReq.getName(), loginReq.getPassword());
         if (userWithIdPo == null) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
                     new UserRes(ResStatus.SERVER_ERROR, "Service no response"));
         } else {
             return ResponseEntity.status(HttpStatus.OK).body(
                     userAssembler.userWithIdPo2UserRes(userWithIdPo));
-        }
-    }
-
-    @ApiOperation(value = "User login")
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<UserRes> login(@RequestBody LoginReq registerReq) {
-        if (registerReq.getName().equals("fan") && registerReq.getPassword().equals("fan")) {
-            return ResponseEntity.status(HttpStatus.OK).body(
-                    new UserRes("0001", "Fan", Gender.Male, "abc@tw.com", "123456789"));
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                    new UserRes(ResStatus.BAD_REQUEST, "Incorrect username or password"));
         }
     }
 

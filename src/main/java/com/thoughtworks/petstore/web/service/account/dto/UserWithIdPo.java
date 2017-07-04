@@ -10,8 +10,8 @@ public class UserWithIdPo extends UserPo {
     public UserWithIdPo() {
     }
 
-    public UserWithIdPo(String name, String password, Gender gender,
-                        String email, String phone, Long userId) {
+    public UserWithIdPo(Long userId, String name, String password, Gender gender,
+                        String email, String phone) {
         super(name, password, gender, email, phone);
         this.userId = userId;
     }

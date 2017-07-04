@@ -21,4 +21,10 @@ public class UserServiceFeignClientFallback implements UserServiceFeignClient {
 	public UserWithIdPo createUser(UserPo userPo) {
 		return null;
 	}
+
+    @Override
+    public UserWithIdPo matchUserCredential(String name, String pass) {
+        return null;
+    }
+
 }
