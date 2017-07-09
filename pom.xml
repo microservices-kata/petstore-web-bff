@@ -10,9 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>web-bff</artifactId>
-    <properties>
-        <swagger2.version>2.5.0</swagger2.version>
-    </properties>
 
     <dependencies>
         <!-- eureka　client -->
