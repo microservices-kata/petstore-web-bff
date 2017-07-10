@@ -12,7 +12,7 @@ public class UserAssembler {
 
     public UserPo userReq2UserPo(UserReq userReq) {
         return new UserPo(userReq.getName(), userReq.getPassword(),
-                userReq.getGender(), userReq.getEmail(), userReq.getPhone());
+                userReq.getGender().toString(), userReq.getEmail(), userReq.getPhone());
     }
 
     public UserRes userWithIdPo2UserRes(UserWithIdPo userWithIdPo) {

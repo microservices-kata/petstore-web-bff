@@ -1,7 +1,5 @@
 package com.thoughtworks.petstore.web.service.account.dto;
 
-import com.thoughtworks.petstore.web.dto.enums.Gender;
-
 public class UserPo {
     private String name;
     private String password;
@@ -13,10 +11,10 @@ public class UserPo {
     }
 
     public UserPo(String name, String password,
-                  Gender gender, String email, String phone) {
+                  String gender, String email, String phone) {
         this.name = name;
         this.password = password;
-        this.gender = gender.toString();
+        this.gender = gender;
         this.email = email;
         this.phone = phone;
     }

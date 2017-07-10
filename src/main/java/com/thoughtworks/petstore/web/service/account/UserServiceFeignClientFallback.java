@@ -11,8 +11,7 @@ public class UserServiceFeignClientFallback implements UserServiceFeignClient {
 
 	@Override
 	public UserWithIdPo getUser(Long userId) {
-		return new UserWithIdPo(0L, "N/A", "NULL",
-				Gender.Unknown, "N/A", "N/A");
+		return new UserWithIdPo(0L, "N/A", "Unknown", "N/A", "N/A");
 	}
 
 	@Override
