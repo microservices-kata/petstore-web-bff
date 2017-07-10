@@ -41,6 +41,13 @@
             <version>2.8.9</version>
         </dependency>
 
+        <!-- lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.18</version>
+        </dependency>
+
         <!-- pact -->
         <dependency>
             <groupId>au.com.dius</groupId>

@@ -1,23 +1,11 @@
 package com.thoughtworks.petstore.web.dto.vo.request;
 
-public class LoginReq {
+import lombok.*;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class LoginReq {
     private String name;
     private String password;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

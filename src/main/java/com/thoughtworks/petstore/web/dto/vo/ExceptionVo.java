@@ -1,30 +1,11 @@
 package com.thoughtworks.petstore.web.dto.vo;
 
+import lombok.*;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ExceptionVo {
     private Integer code;
     private String message;
-
-    public ExceptionVo() {
-    }
-
-    public ExceptionVo(Integer code, String message) {
-        this.code = code;
-        this.message = message;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }
