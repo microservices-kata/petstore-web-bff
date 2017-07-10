@@ -4,6 +4,14 @@ public class ExceptionVo {
     private Integer code;
     private String message;
 
+    public ExceptionVo() {
+    }
+
+    public ExceptionVo(Integer code, String message) {
+        this.code = code;
+        this.message = message;
+    }
+
     public Integer getCode() {
         return code;
     }

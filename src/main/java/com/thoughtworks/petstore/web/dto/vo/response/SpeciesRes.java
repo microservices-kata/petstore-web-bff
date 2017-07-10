@@ -1,6 +1,6 @@
 package com.thoughtworks.petstore.web.dto.vo.response;
 
-public class SpeciesRes extends GeneralRes {
+public class SpeciesRes {
     private String id;
     private String name;
     private String description;

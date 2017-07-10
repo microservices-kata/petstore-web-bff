@@ -4,7 +4,7 @@ import com.thoughtworks.petstore.web.dto.enums.OrderStatus;
 
 import java.util.Date;
 
-public class OrderDigestRes extends GeneralRes {
+public class OrderDigestRes {
     private String id;
     private OrderStatus orderStatus;
     private Date orderTime;

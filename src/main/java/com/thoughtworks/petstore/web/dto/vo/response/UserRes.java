@@ -1,18 +1,13 @@
 package com.thoughtworks.petstore.web.dto.vo.response;
 
 import com.thoughtworks.petstore.web.dto.enums.Gender;
-import com.thoughtworks.petstore.web.dto.enums.ResStatus;
 
-public class UserRes extends GeneralRes {
+public class UserRes {
     private String id;
     private String name;
     private Gender gender;
     private String email;
     private String phone;
-
-    public UserRes(ResStatus status, String message) {
-        super(status, message);
-    }
 
     public UserRes(String id, String name, Gender gender, String email, String phone) {
         this.id = id;
