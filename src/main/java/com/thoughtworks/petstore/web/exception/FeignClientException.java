@@ -5,7 +5,7 @@ import com.netflix.hystrix.exception.HystrixBadRequestException;
 
 public class FeignClientException extends HystrixBadRequestException {
 
-    private Integer code;
+    private final Integer code;
 
     public FeignClientException(int code, String message) {
         super(message);
@@ -21,7 +21,4 @@ public class FeignClientException extends HystrixBadRequestException {
         return code;
     }
 
-    public void setCode(Integer code) {
-        this.code = code;
-    }
 }

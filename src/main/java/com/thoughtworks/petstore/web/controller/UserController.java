@@ -1,14 +1,10 @@
 package com.thoughtworks.petstore.web.controller;
 
 import com.thoughtworks.petstore.web.dto.assembler.UserAssembler;
-import com.thoughtworks.petstore.web.dto.enums.Gender;
-import com.thoughtworks.petstore.web.dto.vo.ExceptionVo;
 import com.thoughtworks.petstore.web.dto.vo.request.LoginReq;
 import com.thoughtworks.petstore.web.dto.vo.request.UserReq;
 import com.thoughtworks.petstore.web.dto.vo.response.UserRes;
-import com.thoughtworks.petstore.web.exception.FeignClientException;
 import com.thoughtworks.petstore.web.exception.NoPermissionException;
-import com.thoughtworks.petstore.web.exception.NoResponseException;
 import com.thoughtworks.petstore.web.service.account.UserServiceFeignClient;
 import com.thoughtworks.petstore.web.service.account.dto.UserWithIdPo;
 import io.swagger.annotations.ApiOperation;

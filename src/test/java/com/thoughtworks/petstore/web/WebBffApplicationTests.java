@@ -11,6 +11,7 @@ public class WebBffApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		// Smoke test
 	}
 
 }

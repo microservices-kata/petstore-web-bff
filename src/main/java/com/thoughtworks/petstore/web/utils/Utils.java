@@ -15,8 +15,12 @@ import java.util.Map;
 public class Utils {
     private static final Logger log = LoggerFactory.getLogger(Utils.class);
 
+    private Utils() {
+        // Prevent instantiate this class
+    }
+
     public static Map<String, Object> introspect(Object obj) {
-        Map<String, Object> result = new HashMap<String, Object>();
+        Map<String, Object> result = new HashMap<>();
         try {
             BeanInfo info = Introspector.getBeanInfo(obj.getClass());
             for (PropertyDescriptor pd : info.getPropertyDescriptors()) {

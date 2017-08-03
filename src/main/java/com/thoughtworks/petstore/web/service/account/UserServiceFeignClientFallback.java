@@ -1,6 +1,5 @@
 package com.thoughtworks.petstore.web.service.account;
 
-import com.thoughtworks.petstore.web.dto.enums.Gender;
 import com.thoughtworks.petstore.web.exception.NoResponseException;
 import com.thoughtworks.petstore.web.service.account.dto.UserPo;
 import com.thoughtworks.petstore.web.service.account.dto.UserWithIdPo;

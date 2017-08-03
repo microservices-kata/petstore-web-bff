@@ -13,19 +13,19 @@ public class ErrorController {
 
     @ExceptionHandler(FeignClientException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ExceptionVo BadRequestHandler(FeignClientException exception) {
+    public ExceptionVo badRequestHandler(FeignClientException exception) {
         return new ExceptionVo(exception.getCode(), exception.getMessage());
     }
 
     @ExceptionHandler(NoPermissionException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public ExceptionVo NoPermissionHandler(NoPermissionException exception) {
+    public ExceptionVo noPermissionHandler(NoPermissionException exception) {
         return new ExceptionVo(exception.getCode(), exception.getMessage());
     }
 
     @ExceptionHandler(NoResponseException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ExceptionVo NoResponseHandler(NoResponseException exception) {
+    public ExceptionVo noResponseHandler(NoResponseException exception) {
         return new ExceptionVo(exception.getCode(), exception.getMessage());
     }
 }

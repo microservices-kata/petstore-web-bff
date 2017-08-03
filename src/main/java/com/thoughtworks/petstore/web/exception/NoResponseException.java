@@ -3,7 +3,7 @@ package com.thoughtworks.petstore.web.exception;
 
 public class NoResponseException extends RuntimeException {
 
-    private Integer code;
+    private final Integer code;
 
     public NoResponseException(int code, String message) {
         super(message);
@@ -19,7 +19,4 @@ public class NoResponseException extends RuntimeException {
         return code;
     }
 
-    public void setCode(Integer code) {
-        this.code = code;
-    }
 }
