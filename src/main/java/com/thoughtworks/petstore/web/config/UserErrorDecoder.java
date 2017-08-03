@@ -25,7 +25,7 @@ public class UserErrorDecoder implements ErrorDecoder {
         try {
             exceptionVo = mapper.readValue(Util.toString(response.body().asReader()), ExceptionVo.class);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Cannot parse response", e);
         }
 
         if (exceptionVo != null && response.status() >= 400 && response.status() < 500) {

@@ -1,5 +1,8 @@
 package com.thoughtworks.petstore.web.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
@@ -10,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Utils {
+    private static final Logger log = LoggerFactory.getLogger(Utils.class);
 
     public static Map<String, Object> introspect(Object obj) {
         Map<String, Object> result = new HashMap<String, Object>();
@@ -21,7 +25,7 @@ public class Utils {
                     result.put(pd.getName(), reader.invoke(obj));
             }
         } catch (IntrospectionException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
+            log.error("Fail to convert object to map", e);
         }
         return result;
     }
