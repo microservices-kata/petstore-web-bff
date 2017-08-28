@@ -17,7 +17,7 @@ public class UserAssembler {
 
     public UserRes userWithIdPo2UserRes(UserWithIdPo userWithIdPo) {
         return new UserRes(userWithIdPo.getUserId().toString(),
-                userWithIdPo.getName(), Gender.valueOf(userWithIdPo.getGender()),
+                userWithIdPo.getName(), Gender.fromString(userWithIdPo.getGender()),
                 userWithIdPo.getEmail(), userWithIdPo.getPhone());
     }
 }
